@@ -1,0 +1,26 @@
+---
+interface Props {
+    
+    name: string;
+    role: string;
+}
+const { name, role } = Astro.props;
+export const prerender = true;
+
+--- 
+
+<a href={'members/'+name} class="w-1/4 p-4">
+    <div class="text-white rounded-lg overflow-hidden">
+        <img class="flex float animate-float transition-all duration-300" src={'/assets/'+name+'.webp'} alt={name}>
+        <div class="p-4">
+            <h2 class="text-lg font-bold">{name}</h2>
+            <p class="text-gray-600">{role}</p>
+        </div>
+    </div>
+</a>
+
+<style>
+
+    
+
+</style>

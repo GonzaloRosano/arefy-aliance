@@ -1,0 +1,19 @@
+---
+// Header.astro
+const links = [
+  { href: '/', label: 'Inicio' },
+  { href: '/members', label: 'Miembros' },
+  { href: '/table', label: 'Tabla' }
+];
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-black/50 text-white flex justify-between px-10 h-12 items-center">
+  <h1><a href="/" class="text-white">Aliance</a></h1>
+  <nav class="flex space-x-4">
+      {links.map(link => (
+          <a href={link.href} class={link.href === currentPath ? 'font-semibold' : ''}>{link.label}</a>
+      ))}
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MemberCard from '../components/MemberCard.astro';
+import { members } from '../data';
+
+---
+
+<Layout title="Aliance | Miembros">
+	<main>
+		<div class="flex justify-around">
+			{members.map(member => <MemberCard name={member.name} role={member.role}/>)}
+		</div>
+	</main>
+</Layout>
+
