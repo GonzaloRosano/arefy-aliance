@@ -8,7 +8,7 @@ const { id } = Astro.params;
 const member = members.find(member => member.name === id);  
 ---
 
-<Layout title="Aliance | Miembros">
+<Layout title={'Aliance | '+member?.name}>
     <main class="flex flex-col gap-4">
         <div class="flex justify-around p-4 text-white w-full">
             <img class="flex float animate-float transition-all duration-300 w-2/5 h-auto" src={'/assets/'+member?.name+'.webp'} alt={member?.name}>
