@@ -1,10 +1,10 @@
 ---
 import { fade } from "astro:transitions";
 interface Props {
-    id: any;
-    nick: any;
-    imagen: any;
-    rol: any;
+    id?: string;
+    nick?: string;
+    imagen?: string;
+    rol?: string;
 }
 const { id, nick, imagen, rol } = Astro.props;
 export const prerender = true;
@@ -16,20 +16,17 @@ export const prerender = true;
             class="flex float animate-float transition-all duration-300"
             src={"/assets/" + imagen}
             alt={nick}
-            transition:animate="fade"
             transition:name={id + "-img"}
         />
         <div class="p-4">
             <h2
                 class="text-lg font-bold"
-                transition:animate="fade"
                 transition:name={id + "-title"}
             >
                 {nick}
             </h2>
             <p
                 class="text-gray-600"
-                transition:animate="fade"
                 transition:name={id + "-role"}
             >
                 {rol}

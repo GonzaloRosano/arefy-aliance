@@ -11,7 +11,7 @@ const { rows: members } = await turso.execute('SELECT * FROM members');
   <main>
     <div class="flex justify-around">
       {members.map(member => (
-        <MemberCard id={member.id} imagen={member.imagen} nick={member.nick} rol={member.rol} />
+        <MemberCard id={member.id?.toString()} imagen={member.imagen?.toString()} nick={member.nick?.toString()} rol={member.rol?.toString()} />
       ))}
     </div>
   </main>
