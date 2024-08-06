@@ -1,26 +1,46 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { fade } from 'astro:transitions';
-import { members } from '../../data';
+import Layout from "../../layouts/Layout.astro";
+import { fade } from "astro:transitions";
+import { turso } from "../../turso";
+const { id } = Astro.params;
+
+const { rows } = await turso.execute("SELECT * FROM members");
+const member = rows.find((member) => member.nick === id);
 
 export const prerender = false;
-
-const { id } = Astro.params;
-const member = members.find(member => member.name === id);  
 ---
 
-<Layout title={'Aliance | '+member?.name}>
+<Layout title={"Aliance | " + member?.name}>
     <main class="flex flex-col gap-4">
         <div class="flex justify-around p-4 text-white w-full">
-            <img class="flex float animate-float transition-all duration-300 w-2/5 h-auto" src={'/assets/'+member?.name+'.webp'} alt={member?.name}  transition:animate={fade({ duration: '0.4s' })} transition:name={member?.name+'-img'}>
-            
-            <div class="flex flex-col p-4 w-full gap-4 ">
-                <h3 class="text-5xl font-bold" transition:animate={fade({ duration: '0.4s' })} transition:name={member?.name+'-title'}>{member?.name}</h3>
-                <p class="text-xl font-light text-gray-400" transition:animate={fade({ duration: '0.35s' })} transition:name={member?.name+'-role'}>{member?.role}</p>
+            <img
+                class="flex float animate-float transition-all duration-300 w-2/5 h-auto"
+                src={"/assets/" + member?.imagen}
+                alt={member?.id + "-img"}
+                transition:animate="fade"
+                transition:name={member?.id + "-img"}
+            />
+
+            <div class="flex flex-col p-4 w-full gap-4">
+                <h3
+                    class="text-5xl font-bold"
+                    transition:animate="fade"
+                    transition:name={member?.id + "-title"}
+                >
+                    {member?.nick}
+                </h3>
+                <p
+                    class="text-xl font-light text-gray-400"
+                    transition:animate="fade"
+                    transition:name={member?.id + "-role"}
+                >
+                    {member?.rol}
+                </p>
             </div>
         </div>
-        <a class="text-white mx-auto bg-white/10 px-4 py-2 rounded-full" href="/members">Regresar</a>
+        <a
+            class="text-white mx-auto bg-white/10 px-4 py-2 rounded-full"
+            href="/members">Regresar</a
+        >
     </main>
 </Layout>
-
-    

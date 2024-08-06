@@ -1,15 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import MemberCard from '../components/MemberCard.astro';
-import { members } from '../data';
+import { turso } from '../turso';
+
+const { rows: members } = await turso.execute('SELECT * FROM members');
 
 ---
 
 <Layout title="Aliance | Miembros">
-	<main>
-		<div class="flex justify-around">
-			{members.map(member => <MemberCard name={member.name} role={member.role}/>)}
-		</div>
-	</main>
+  <main>
+    <div class="flex justify-around">
+      {members.map(member => (
+        <MemberCard id={member.id} imagen={member.imagen} nick={member.nick} rol={member.rol} />
+      ))}
+    </div>
+  </main>
 </Layout>
-

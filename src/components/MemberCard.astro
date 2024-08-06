@@ -1,27 +1,41 @@
 ---
-import { fade } from 'astro:transitions';
+import { fade } from "astro:transitions";
 interface Props {
-    
-    name: string;
-    role: string;
+    id: any;
+    nick: any;
+    imagen: any;
+    rol: any;
 }
-const { name, role } = Astro.props;
+const { id, nick, imagen, rol } = Astro.props;
 export const prerender = true;
+---
 
---- 
-
-<a href={'members/'+name} class="w-1/4 p-4">
+<a href={"members/" + nick} class="w-1/4 p-4">
     <div class="text-white rounded-lg overflow-hidden">
-        <img class="flex float animate-float transition-all duration-300" src={'/assets/'+name+'.webp'} alt={name}  transition:animate={fade({ duration: '0.4s' })} transition:name={name+'-img'}>
+        <img
+            class="flex float animate-float transition-all duration-300"
+            src={"/assets/" + imagen}
+            alt={nick}
+            transition:animate="fade"
+            transition:name={id + "-img"}
+        />
         <div class="p-4">
-            <h2 class="text-lg font-bold"  transition:animate={fade({ duration: '0.3s' })} transition:name={name+'-title'}>{name}</h2>
-            <p class="text-gray-600"  transition:animate={fade({ duration: '0.35s' })} transition:name={name+'-role'}>{role}</p>
+            <h2
+                class="text-lg font-bold"
+                transition:animate="fade"
+                transition:name={id + "-title"}
+            >
+                {nick}
+            </h2>
+            <p
+                class="text-gray-600"
+                transition:animate="fade"
+                transition:name={id + "-role"}
+            >
+                {rol}
+            </p>
         </div>
     </div>
 </a>
 
-<style>
-
-    
-
-</style>
+<style></style>
